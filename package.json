@@ -1,0 +1,40 @@
+{
+  "name": "buythispencil-server",
+  "version": "1.0.0",
+  "description": "Server for Buy This Pencil",
+  "main": "dist/index.js",
+  "author": "Husnain Javed <husnainj@hotmail.com>",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "dev": "nodemon --exec babel-node bin/dev",
+    "clean": "",
+    "build": "babel src -d dist",
+    "rebuild": "npm run clean && npm run build",
+    "serve": "npm run rebuild && npm run start",
+    "start": "node bin/www"
+  },
+  "dependencies": {
+    "app-root-path": "^3.0.0",
+    "axios": "^0.20.0",
+    "body-parser": "^1.19.0",
+    "currency-symbol-map": "^4.0.4",
+    "dotenv": "^8.2.0",
+    "dynamoose": "^2.3.0",
+    "email-validator": "^2.0.4",
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "shortid": "^2.2.15",
+    "stripe": "^8.101.0",
+    "winston": "^3.3.3"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.11.6",
+    "@babel/core": "^7.11.6",
+    "@babel/node": "^7.10.5",
+    "@babel/preset-env": "^7.11.5",
+    "core-js": "3",
+    "eslint": "^7.9.0",
+    "nodemon": "^2.0.4"
+  }
+}
