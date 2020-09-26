@@ -1,22 +1,20 @@
 import morgan from "morgan";
 import * as dynamoose from "dynamoose";
+import serverless from "serverless-http";
 
 import App from "./App";
 import logger from "./utils/logger";
-import { httpProtocol, host, port, aws }  from "../config";
-
-dynamoose.aws.sdk.config.update({
-    "accessKeyId": aws.accessKeyID,
-    "secretAccessKey": aws.secretAccessKey,
-    "region": aws.region
-});
+import { aws }  from "../config";
 
 const app = new App()
+
+dynamoose.aws.sdk.config.update({
+    region: aws.region
+});
 
 if (process.env.NODE_ENV !== "production") {
     app.use(morgan("dev", { stream: logger.stream }));
 }
 
-app.listen(port, () => {
-    console.log(`App running at ${httpProtocol}://${host}:${port}`);
-});
+module.exports.app = app;
+module.exports.handler = serverless(app);

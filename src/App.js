@@ -1,17 +1,20 @@
-import express, { Router } from 'express';
-import bodyParser from 'body-parser';
+import express, { Router } from "express";
+import bodyParser from "body-parser";
+import cors from "cors";
 
-import initRoutes from './routes';
-import errorHandler from './middlewares/errorHandler';
+import initRoutes from "./routes";
+import errorHandler from "./middlewares/errorHandler";
 
 class App {
     constructor() {
         const app = express();
 
+        app.use(cors());
+
+        app.set("trust proxy", true);
+
         app.use(bodyParser.urlencoded({ extended: false }));
         app.use(bodyParser.json());
-
-        app.set('trust proxy', true)
 
         const router = new Router();
         initRoutes(router);

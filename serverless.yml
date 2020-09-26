@@ -1,0 +1,25 @@
+service: buythispencil-server
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: prod
+  region: eu-west-1
+  profile: default
+  memorySize: 128
+  timeout: 10
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+       - dynamodb:*
+      Resource: '*'
+
+functions:
+  app:
+    handler: dist/index.handler
+    events:
+      - http: ANY /
+      - http: 'ANY {proxy+}'
+
+plugins:
+  - serverless-dotenv-plugin

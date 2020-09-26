@@ -5,13 +5,12 @@ import Stripe from "stripe";
 import emailValidator from "email-validator";
 
 import { clientUrl, ipdata, stripe as stripeConfig } from "../../config";
-import prices from "../prices.json";
+import prices from "../../prices.json";
 import { ApplicationError, RequestValidationError } from "../middlewares/Errors";
 import Code from "../models/Code";
 
 const DEFAULT_CURRENCY_CODE = "USD"
 const MAX_CODES_PER_EMAIL = 1
-const MAX_USE_COUNT = 1
 
 const stripe = new Stripe(stripeConfig.sk);
 
@@ -20,6 +19,7 @@ function getPrice(req, res, next) {
 
     var price = {
         currency: {
+            success: true,
             code: DEFAULT_CURRENCY_CODE,
             symbol: getSymbolFromCurrency(DEFAULT_CURRENCY_CODE)
         },
@@ -34,6 +34,7 @@ function getPrice(req, res, next) {
             if (!amount) return; // Currency not defined
 
             price = {
+                success: true,
                 currency: {
                     code: currencyCode,
                     symbol: getSymbolFromCurrency(currencyCode)
@@ -88,7 +89,7 @@ async function validateCode(code) {
 
     try {
         const result = await Code.get(code);
-        return (result !== undefined) ? result.useCount < MAX_USE_COUNT : false;
+        return (result !== undefined) ? result.useCount < result.maxUses : false;
     } catch (err) {
         throw new ApplicationError("Could not query code from database.")
     }

@@ -17,11 +17,15 @@ const codeSchema = new dynamoose.Schema({
     "useCount": {
         "type": Number,
         "default": 0
+    },
+    "maxUses": {
+        "type": Number,
+        "default": 1
     }
 }, {
     "timestamps": true
 });
 
-const Code = dynamoose.model("Codes", codeSchema);
+const Code = dynamoose.model("codes", codeSchema);
 
 export default Code;
