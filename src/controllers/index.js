@@ -119,8 +119,8 @@ async function buy(req, res, next) {
                 }
             ],
             mode: 'payment',
-            success_url: `https://${clientUrl}/order-placed`,
-            cancel_url: `https://${clientUrl}`
+            success_url: `${clientUrl}/order-placed`,
+            cancel_url: `${clientUrl}`
         });
 
         res.status(200).json({

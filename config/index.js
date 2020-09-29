@@ -1,6 +1,6 @@
 module.exports = {
-    httpProtocol: process.env.HTTP_PROTOCOL || 'http',
-    host: process.env.HOST || '0.0.0.0',
+    httpProtocol: process.env.HTTP_PROTOCOL || "http",
+    host: process.env.HOST || "0.0.0.0",
     port: process.env.PORT || 3000,
     clientUrl: "https://buythispencil.com" || process.env.CLIENT_URL,
     ipdata: {
