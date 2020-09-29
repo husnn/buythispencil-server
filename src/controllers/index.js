@@ -110,7 +110,7 @@ async function buy(req, res, next) {
     const { code } = req.body;
     var { currencyCode } = req.body;
 
-    if (!currencyCode) currencyCode = DEFAULT_CURRENCY_CODE;
+    if (!currencyCode || !prices[currencyCode]) currencyCode = DEFAULT_CURRENCY_CODE;
 
     try {    
         if (!await validateCode(code)) {
