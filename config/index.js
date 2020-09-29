@@ -17,6 +17,7 @@ module.exports = {
         sk: process.env.STRIPE_SK
     },
     sendinblue: {
+        senderEmail: "hey@buythispencil.com",
         baseUrl: "https://api.sendinblue.com/v3",
         apiKey: process.env.SENDINBLUE_API_KEY
     }

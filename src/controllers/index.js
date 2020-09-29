@@ -76,6 +76,17 @@ async function joinList(req, res, next) {
             emailAddress
         }).save();
 
+        await axios.post(`${sendinblue.baseUrl}/smtp/email`, {
+            sender: { email: sendinblue.senderEmail },
+            to: [{ email: emailAddress }],
+            replyTo: { email: sendinblue.senderEmail },
+            templateId: 10
+          }, {
+            headers: {
+                "api-key": sendinblue.apiKey
+            }
+        });
+
         res.status(200).json({
             success: true
         });
