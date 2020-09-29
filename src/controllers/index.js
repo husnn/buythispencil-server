@@ -4,7 +4,7 @@ import shortid from "shortid";
 import Stripe from "stripe";
 import emailValidator from "email-validator";
 
-import { clientUrl, ipdata, stripe as stripeConfig } from "../../config";
+import { clientUrl, ipdata, stripe as stripeConfig, sendinblue } from "../../config";
 import prices from "../../prices.json";
 import { ApplicationError, RequestValidationError } from "../middlewares/Errors";
 import Code from "../models/Code";
@@ -132,8 +132,25 @@ async function buy(req, res, next) {
     }
 }
 
-function sendFuckYou(req, res) {
+async function sendFuckYou(req, res, next) {
+    const { emailAddress } = req.body;
 
+    try {
+        const response = await axios.post(`${sendinblue.baseUrl}/contacts/doubleOptinConfirmation`, {
+            includeListIds: [2],
+            templateId: 6,
+            redirectionUrl: "https://buythispencil.com",
+            email: emailAddress
+          }, {
+            headers: {
+                "api-key": sendinblue.apiKey
+            }
+        });
+
+        res.send(response.data);
+    } catch (err) {
+        next(err);
+    }
 }
 
 export { getPrice, joinList, buy, sendFuckYou };

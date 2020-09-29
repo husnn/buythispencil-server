@@ -15,5 +15,9 @@ module.exports = {
     stripe: {
         pk: process.env.STRIPE_PK,
         sk: process.env.STRIPE_SK
+    },
+    sendinblue: {
+        baseUrl: "https://api.sendinblue.com/v3",
+        apiKey: process.env.SENDINBLUE_API_KEY
     }
 }
