@@ -80,7 +80,7 @@ async function joinList(req, res, next) {
             sender: { email: sendinblue.senderEmail },
             to: [{ email: emailAddress }],
             replyTo: { email: sendinblue.senderEmail },
-            templateId: 10
+            templateId: sendinblue.emails.join.templates.welcome
           }, {
             headers: {
                 "api-key": sendinblue.apiKey
@@ -148,8 +148,8 @@ async function sendFuckYou(req, res, next) {
 
     try {
         const response = await axios.post(`${sendinblue.baseUrl}/contacts/doubleOptinConfirmation`, {
-            includeListIds: [2],
-            templateId: 6,
+            includeListIds: [sendinblue.emails.join.list],
+            templateId: sendinblue.emails.join.templates.confirmation,
             redirectionUrl: "https://buythispencil.com",
             email: emailAddress
           }, {

@@ -19,6 +19,16 @@ module.exports = {
     sendinblue: {
         senderEmail: "hey@buythispencil.com",
         baseUrl: "https://api.sendinblue.com/v3",
-        apiKey: process.env.SENDINBLUE_API_KEY
+        apiKey: process.env.SENDINBLUE_API_KEY,
+        emails: {
+            join: {
+                list: 2 || process.env.SENDINBLUE_LIST_JOIN,
+                templates: {
+                    welcome: 10 || process.env.SENDINBLUE_TEMPLATE_JOIN,
+                    confirmation: 6 || process.env.SENDINBLUE_TEMPLATE_JOIN_CONFIRMATION
+                }
+
+            }
+        }
     }
 }
