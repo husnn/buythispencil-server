@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Server for Buy This Pencil",
   "main": "dist/index.js",
-  "author": "Husnain Javed <husnainj@hotmail.com>",
+  "author": "Husnain Javed <me@husnainjaved.com>",
   "license": "UNLICENSED",
   "private": true,
   "scripts": {
@@ -28,6 +28,7 @@
     "express": "^4.17.1",
     "morgan": "^1.10.0",
     "regenerator-runtime": "^0.13.7",
+    "serverless": "^2.48.0",
     "serverless-http": "^2.6.0",
     "shortid": "^2.2.15",
     "stripe": "^8.101.0",

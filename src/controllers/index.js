@@ -4,10 +4,10 @@ import shortid from "shortid";
 import Stripe from "stripe";
 import emailValidator from "email-validator";
 
-import { clientUrl, ipdata, stripe as stripeConfig, sendinblue } from "../../config";
-import prices from "../../prices.json";
-import { ApplicationError, RequestValidationError } from "../middlewares/Errors";
 import Code from "../models/Code";
+import prices from "../../prices.json";
+import { clientUrl, ipdata, stripe as stripeConfig, sendinblue } from "../../config";
+import { ApplicationError, RequestValidationError } from "../middlewares/Errors";
 
 const DEFAULT_CURRENCY_CODE = "USD"
 const MAX_CODES_PER_EMAIL = 1
